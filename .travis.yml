@@ -1,0 +1,14 @@
+dist: trusty
+sudo: false
+language: cpp
+
+before_install:
+  - pip install --user cpp-coveralls
+
+script:
+  - cmake -DCOVERAGE=1 .
+  - cmake --build .
+  - ./tests
+
+after_success:
+  - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
