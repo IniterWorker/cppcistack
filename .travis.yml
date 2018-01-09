@@ -2,7 +2,10 @@ dist: trusty
 sudo: false
 language: cpp
 
+
 before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
   - pip install --user cpp-coveralls
 
 script:
@@ -11,4 +14,4 @@ script:
   - ./tests
 
 after_success:
-  - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
+  - coveralls --root . -E ".*extern.*" -E ".*CMakeFiles.*"
