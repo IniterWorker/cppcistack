@@ -21,11 +21,9 @@ before_install:
   - pip install --user cpp-coveralls
 
 script:
-  - mkdir build
-  - cd build
-  - cmake -DCOVERAGE=1 ..
+  - cmake -DCOVERAGE=1 .
   - cmake --build . --target tests
   - ./tests
 
 after_success:
-  - coveralls --root . --include src/*.cpp --include include/*.hpp -E ".*extern.*" -E ".*CMakeFiles.*"
+  - coveralls --root . -E ".*extern.*" -E ".*CMakeFiles.*"
