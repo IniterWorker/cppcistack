@@ -11,13 +11,11 @@ addons:
 env:
   - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
-before_install:
-    - eval "${MATRIX_EVAL}"
-
 git:
   submodules: false
 
 before_install:
+  - eval "${MATRIX_EVAL}"
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
   - pip install --user cpp-coveralls
