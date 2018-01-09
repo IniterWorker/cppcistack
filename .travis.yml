@@ -2,6 +2,8 @@ dist: trusty
 sudo: false
 language: cpp
 
+git:
+  submodules: false
 
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
