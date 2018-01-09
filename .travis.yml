@@ -11,8 +11,10 @@ before_install:
   - pip install --user cpp-coveralls
 
 script:
-  - cmake -DCOVERAGE=1 .
-  - cmake --build .
+  - mkdir build
+  - cd build
+  - cmake -DCOVERAGE=1 ..
+  - cmake --build . --target tests
   - ./tests
 
 after_success:
